@@ -1,0 +1,21 @@
+dropList :: Int -> [Int] -> [Int]
+dropList 0 [] = []
+dropList 0 (x:xs) = x:xs
+dropList y [] = []
+dropList y (x:xs) = dropList (y-1) xs
+
+takeList :: Int -> [Int] -> [Int]
+takeList 0 [] = []
+takeList 0 (x:xs) = []
+takeList y [] = []
+takeList y (x:xs) 
+  | y <= length (x:xs) =  x : takeList (y-1) xs
+  | otherwise = []
+
+split :: Int -> [Int] -> ([Int],[Int])
+split 0 [] = ([],[])
+split y [] = ([],[])
+split y (x:xs) = (takeList y (x:xs), dropList y (x:xs))
+
+main = do
+  print (split 7 [1,2,3,4,5,6])

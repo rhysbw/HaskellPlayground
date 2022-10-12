@@ -1,0 +1,18 @@
+memberSet :: Int -> [Int] -> Bool 
+memberSet x [] = False 
+memberSet x (y:ys)
+  | x == y = True 
+  | otherwise = memberSet x ys
+
+unionSet :: [Int] -> [Int] -> [Int]
+unionSet [] [] = []
+unionSet (x:xs) [] = (x:xs)
+unionSet [] (y:ys) = (y:ys)
+unionSet (x:xs) (y:ys)
+  | memberSet y (x:xs) = unionSet (x:xs) ys
+  | otherwise = y : unionSet (x:xs) ys
+
+
+main = do
+  print (unionSet [1,2,3] [2,5,3,4])
+
